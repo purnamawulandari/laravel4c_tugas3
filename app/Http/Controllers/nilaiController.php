@@ -2,57 +2,57 @@
 
 namespace App\Http\Controllers;
 
-use App\Nilai;
-use App\User;
+use App\mahasiswa;
 use App\Makul;
-Use Alert;
+use App\Nilai;
 use Illuminate\Http\Request;
+use alert;
 
 class NilaiController extends Controller
 {
     public function index()
     {
-        $nilai = Nilai::with(['makul', 'mahasiswa'])->get();
+        
+        $nilai = Nilai::with(['mahasiswa', 'makul'])->get();
         return view('nilai.index', compact('nilai'));
     }
 
     public function create()
-       {
-           $user = User::all();
-           $makul = Makul::all();
-           return view('nilai.create', compact('user', 'makul'));
-       }
+    {
+        $mahasiswa = mahasiswa::all();
+        $makul     = Makul::all();
+        return view('nilai.create', compact('mahasiswa', 'makul'));
+    }
+
     public function store(Request $request)
-       {
-
-            Nilai::create($request->all());
-           alert()->success('Success','Berhasil Menyimpan Data');
-           return redirect()->route('nilai');
-
-       }
+    {
+        Nilai::create($request->all());
+        alert()->success('Success','Data Berhasil Disimpan');
+        return redirect()->route('nilai'); //cara baca setelah selesai tolong jalankan ke arah index(data mahasiswa)
+    }
 
     public function edit($id)
     {
-        $user = User::all();
+        $mahasiswa = mahasiswa::all();
         $makul = Makul::all();
-        $nilai = Nilai::find($id);
-        return view('nilai.edit', compact('nilai', 'user', 'makul'));
+        $nilai = Nilai::find($id); //select * from nama_table where id = $id;
+        return view('nilai.edit', compact('nilai','mahasiswa', 'makul')); //Compact itu boleh 2
     }
 
-    public function update(request $request, $id)
+    public function update(Request $request, $id)
     {
         $nilai = Nilai::find($id);
         $nilai->update($request->all());
-        toast('Yeahh Berhasil Mengedit Data', 'Success');
+        toast('Berhasil Update Data','success');
         return redirect()->route('nilai');
     }
 
     public function destroy($id)
     {
-       $nilai = Nilai::find($id);
-       $nilai->delete();
-       toast('Yeahh Berhasil Menghapus Data', 'Success');
-       return redirect()->route('nilai');
+        $nilai = Nilai::find($id);
+        $nilai->delete($id);
+        toast('Berhasil Hapus Data','success');
+        return redirect()->route('nilai');
     }
-   
+
 }

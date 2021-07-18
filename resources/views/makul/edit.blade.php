@@ -15,7 +15,7 @@
                    <div class="form-row">
                    <div class="col">
                    <label for="">Kode Makul</label>
-                   <input type="text" name="kode_makul" class="form-control" placeholder="Tambahkan Kode Makul" 
+                   <input type="text" name="kd_makul" class="form-control" placeholder="Tambahkan Kode Makul" 
                    value="{{is_null ($makul) ? '' : $makul->kd_makul}}">
                    </div>
                    <div class="col">

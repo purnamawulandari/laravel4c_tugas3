@@ -8,13 +8,13 @@
                 <div class="card-header">Tambah Makul</div>
 
                 <div class="card-body">
-                   <form action="simpan-data" method="post">
+                <form action= "{{ route('simpan.makul') }}" method="post">
                    @csrf
                    <div class="form-group">
                    <div class="form-row">
                    <div class="col">
                    <label for="">Kode Makul</label>
-                   <input type="text" name="kode_makul" class="form-control" placeholder="Tambahkan Kode Makul">
+                   <input type="text" name="kd_makul" class="form-control" placeholder="Tambahkan Kode Makul">
                    </div>
                    <div class="col">
                    <label for="">Nama Makul</label>
